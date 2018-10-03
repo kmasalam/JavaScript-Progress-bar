@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Project Progress</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 20px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            height: 100%;
+            background: #ddd;
+            width: 0%;
+        }
+
+        .score {
+            position: absolute;
+            font-size: 14px;
+            color: #000;
+            margin-left: -27px;
+            z-index: 7;
+            margin-top: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <span class="score"></span>
+        <span class="overlay"></span>
+    </div>
+
+    <button class="next" onclick="skill('next');">Next</button>
+    <button class="Prev" onclick="skill('prev');">Prev</button>
+
+
+
+    <script>
+        var width, slide, score, overlay;
+        score = document.querySelector('.score');
+        overlay = document.querySelector('.overlay');
+        width = 0;
+        slide = 10;
+
+        function skill(param) {
+            if (param === 'next') {
+                if (width < 100) {
+                    width += slide;
+                    scoreUpgrade();
+                }
+            }
+            if (param === 'prev') {
+                if (width <= 100 && width > 0) {
+                    width -= slide;
+                    scoreUpgrade();
+                }
+            }
+
+            function scoreUpgrade() {
+                score.textContent = width;
+                score.style.left = width + '%';
+                overlay.style.width = width + '%';
+            }
+        }
+    </script>
+</body>
+
+</html>
